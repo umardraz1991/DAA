@@ -1,10 +1,9 @@
 <<<<<<< HEAD
 # 🌍 Data Analytics Application
-This repository presents a critical review and practical implementation of CI/CD pipelines for data analytics workflows, with a focus on Python-based applications. The project explores how modern DevOps principles, including version control, automation, continuous integration, and continuous deployment.
+This repository presents a critical review and practical implementation of CI/CD pipelines for data analytics workflows, with a focus on Python-based applications. The project explores how modern DevOps principles, including version control, automation, continuous integration, and continuous deployment, can be effectively adapted to data-centric systems, which face unique challenges such as data heterogeneity, quality validation, and reproducibility.
 
 ## 📌 Project Perspective
-In the reviewed project, GitHub served as the single source of truth for pipeline scripts, dashboard code, and documentation. This ensured transparency, change traceability, and reproducibility—key DevOps objectives while also highlighting the limitation that large datasets themselves are not ideally managed directly within Git repositories.
-
+In the reviewed project, GitHub served as the single source of truth for pipeline scripts, dashboard code, and documentation. This ensured transparency, change traceability, reproducibility, and key DevOps objectives, while also highlighting the limitation that large datasets themselves are not ideally managed directly within Git repositories.
 
 ## 📊 Datasets Used (World Bank Indicators)
 The project uses three indicators from the **World Bank World Development Indicators (WDI)** database.

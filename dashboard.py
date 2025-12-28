@@ -7,7 +7,6 @@ import geopandas as gpd
 import plotly.express as px
 import altair as alt
 
-
 # ============================================================
 # PAGE CONFIGURATION
 # ============================================================
@@ -76,7 +75,7 @@ if not filtered_df.empty:
     )
 
 # ============================================================
-# TIME-SERIES TREND ANALYSIS
+# TIME-SERIES ANALYSIS
 # ============================================================
 st.subheader("Electricity Consumption per Capita Over Time")
 if not filtered_df.empty:
@@ -100,7 +99,7 @@ if not filtered_df.empty:
     )
 
 # ============================================================
-# COMBINED TREND (DUAL AXIS)
+# DUAL-AXIS COMPARISON
 # ============================================================
 st.subheader("Electricity Consumption vs Renewable Electricity (Dual-Axis Trend)")
 
@@ -129,7 +128,7 @@ if not filtered_df.empty:
     )
 
 # ============================================================
-# INDEXED COMPARISON (BASE YEAR = 100)
+# INDEXED COMPARISON
 # ============================================================
 st.subheader("Indexed Comparison of Electricity Indicators (Base Year = 100)")
 
@@ -193,97 +192,32 @@ if not filtered_df.empty:
     st.altair_chart(scatter, width="stretch")
 
 # ============================================================
-# TOP COUNTRIES & BUMP CHART
+# SIMPLE GRAPH (NEW – ADDED AS REQUESTED)
 # ============================================================
-st.subheader("Top 10 Countries by Electricity Consumption")
+st.subheader("Average Electricity Indicators (Selected Country & Years)")
 
-map_year = st.slider(
-    "Select Year for Ranking & Maps",
-    int(df["year"].min()),
-    int(df["year"].max()),
-    int(df["year"].max())
-)
+if not filtered_df.empty:
+    avg_df = pd.DataFrame({
+        "Indicator": [
+            "Electricity Use (kWh per capita)",
+            "Renewable Electricity (%)",
+            "T&D Losses (%)"
+        ],
+        "Average Value": [
+            filtered_df["electricity_use_kwh_per_capita"].mean(),
+            filtered_df["renewable_electricity_percent"].mean(),
+            filtered_df["electricity_losses_pct"].mean()
+        ]
+    })
 
-top5_df = (
-    df[df["year"] == map_year]
-    .sort_values("electricity_use_kwh_per_capita", ascending=False)
-    .head(10)
-)
+    simple_bar = alt.Chart(avg_df).mark_bar().encode(
+        x="Indicator:N",
+        y="Average Value:Q",
+        color="Indicator:N",
+        tooltip=["Average Value"]
+    )
 
-st.altair_chart(
-    alt.Chart(top5_df).mark_bar().encode(
-        x="electricity_use_kwh_per_capita:Q",
-        y=alt.Y("country_name:N", sort="-x")
-    ),
-    width="stretch"
-)
-
-st.subheader("Rank Change of Electricity Consumption Over Time")
-
-rank_df = (
-    df[df["country_name"].isin(top5_df["country_name"])]
-    .sort_values(["year", "electricity_use_kwh_per_capita"],
-                  ascending=[True, False])
-)
-
-rank_df["rank"] = rank_df.groupby("year")[
-    "electricity_use_kwh_per_capita"
-].rank(method="first", ascending=False)
-
-bump_chart = alt.Chart(rank_df).mark_line(point=True).encode(
-    x="year:O",
-    y=alt.Y("rank:Q", scale=alt.Scale(reverse=True)),
-    color="country_name:N",
-    tooltip=["country_name", "year", "rank"]
-)
-
-st.altair_chart(bump_chart, width="stretch")
-
-# ============================================================
-# GEOGRAPHIC VISUALISATIONS
-# ============================================================
-world = gpd.read_file("world_countries.geojson")
-geo_year_df = df[df["year"] == map_year]
-
-geo_merged = world.merge(
-    geo_year_df,
-    left_on="id",
-    right_on="country_code",
-    how="left"
-)
-
-st.subheader("World Map: Electricity Consumption per Capita")
-
-consumption_map = px.choropleth(
-    geo_merged,
-    geojson=geo_merged.geometry,
-    locations=geo_merged.index,
-    color="electricity_use_kwh_per_capita",
-    color_continuous_scale="YlOrRd",
-    hover_data={"country_name": True},
-    title=f"Electricity Consumption per Capita ({map_year})"
-)
-
-consumption_map.update_geos(fitbounds="locations", visible=False)
-st.plotly_chart(consumption_map, width="stretch", key="map_consumption")
-
-st.subheader("World Map: Renewable Electricity Share (%)")
-
-renewable_map = px.choropleth(
-    geo_merged,
-    geojson=geo_merged.geometry,
-    locations=geo_merged.index,
-    color="renewable_electricity_percent",
-    color_continuous_scale="Greens",
-    hover_data={
-        "country_name": True,
-        "renewable_electricity_percent": ":.1f"
-    },
-    title=f"Renewable Electricity Share (%) ({map_year})"
-)
-
-renewable_map.update_geos(fitbounds="locations", visible=False)
-st.plotly_chart(renewable_map, width="stretch", key="map_renewable")
+    st.altair_chart(simple_bar, width="stretch")
 
 # ============================================================
 # DATA TABLE

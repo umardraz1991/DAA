@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🌍 Global Electricity Analysis – APDV Project
 
 This project presents an end-to-end analysis of global electricity systems using multiple datasets from the World Bank World Development Indicators (WDI). The work integrates heterogeneous data sources, automates data processing through a pipeline, and provides an interactive dashboard for exploratory analysis and visualisation.
@@ -140,3 +141,7 @@ JSON dataset processing, API handling, MongoDB storage
 
 #### Zain Bin Yaseen
 XML dataset processing, data parsing, integration support
+=======
+# DAA
+This repository presents a critical review and practical implementation of CI/CD pipelines for data analytics workflows, with a focus on Python-based applications. The project explores how modern DevOps principles including version control, automation, continuous integration, and continuous deployment.
+>>>>>>> 7a3319a807969c0d2f56cc5e2176e20b9835ad39

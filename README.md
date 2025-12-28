@@ -47,7 +47,8 @@ https://api.worldbank.org/v2/country/all/indicator/EG.ELC.LOSS.ZS?per_page=20000
 
 ## 🗄️ Database Connections
 - **SQLite:** Accessed locally using Python’s `sqlite3` library by directly opening the database file (no server-based connection required).
-- **MongoDB:** Connected using a MongoDB connection string via the `pymongo` client to communicate with the MongoDB server - mongodb+srv://taqApdvAdmin:T%40uq33r7861@electricitydatabase.rodgmrs.mongodb.net/?appName=electricityDatabase.
+- **MongoDB:** Connected using a MongoDB connection string via the `pymongo` client to communicate with the MongoDB server - 
+mongodb+srv://umardraz1991_db_user:KBXFj9NkAx4cXoAr@cluster0.cqwtkfg.mongodb.net/?appName=Cluster0
 
 ## 🔄 Data Processing Pipeline
 The automated pipeline performs the following steps:

@@ -27,7 +27,6 @@ https://api.worldbank.org/v2/en/indicator/EG.ELC.RNEW.ZS?downloadformat=csv
 
 **XML API URL:**  
 https://api.worldbank.org/v2/country/all/indicator/EG.ELC.LOSS.ZS?per_page=20000
-
 ### 🗂️ Project Structure
 #### pipeline.py                  (Prefect-based automated data pipeline)
 #### dashboard.py                 (Streamlit interactive dashboard)
@@ -36,7 +35,6 @@ https://api.worldbank.org/v2/country/all/indicator/EG.ELC.LOSS.ZS?per_page=20000
 #### README.md                    (Project documentation)
 
 ### ⚙️ Technologies & Tools
-
 - **Python** – core programming language  
 - **Pandas & NumPy** – data processing and transformation  
 - **Requests** – API data retrieval  
@@ -48,7 +46,6 @@ https://api.worldbank.org/v2/country/all/indicator/EG.ELC.LOSS.ZS?per_page=20000
 - **GeoPandas** – geographic visualisation  
 
 ## 🗄️ Database Connections
-
 - **SQLite:** Accessed locally using Python’s `sqlite3` library by directly opening the database file (no server-based connection required).
 - **MongoDB:** Connected using a MongoDB connection string via the `pymongo` client to communicate with the MongoDB server - mongodb+srv://taqApdvAdmin:T%40uq33r7861@electricitydatabase.rodgmrs.mongodb.net/?appName=electricityDatabase.
 
@@ -65,10 +62,10 @@ The automated pipeline performs the following steps:
 The pipeline is implemented using **Prefect**, ensuring reproducibility and modular task execution.
 
 ## 🌐 Deployed Dashboard URL 
-    https://apdvenergyproject-jaokeqwr3txvnbxc8r8suc.streamlit.app/
+    [https://daa-cloud.streamlit.app/]
 ---
 ## 💻 Github Source Code Github Repository URL
-    https://github.com/tauqeerqau/apdvEnergyProject
+    https://github.com/umardraz1991/daa/
 ---
 ## 📈 Interactive Dashboard
 The Streamlit dashboard enables users to:
